@@ -5,14 +5,14 @@ const UserSchema = new Schema(
     {
         userName: {
             type: String,
-            Unqique: true,
-            Required: true,
+            unqique: true,
+            required: true,
             Trim: true
         },
         email: {
             type: String,
-            Required: true,
-            Unqique: true
+            required: true,
+            unqique: true
         },
         thoughts: [thouthsSchema],
         friends: [friendsSchema]
