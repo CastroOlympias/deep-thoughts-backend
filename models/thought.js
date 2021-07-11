@@ -42,6 +42,13 @@ const ThoughtSchema = new Schema(
             ref: 'User'
         },
         reactions: [reactionSchema]
+    },
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true
+        },
+        id: false
     }
 )
 
