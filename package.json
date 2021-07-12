@@ -1,0 +1,25 @@
+{
+  "name": "deep-thoughts",
+  "version": "1.0.0",
+  "description": "## TOC server files and flow structure",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CastroOlympias/deep-thoughts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CastroOlympias/deep-thoughts/issues"
+  },
+  "homepage": "https://github.com/CastroOlympias/deep-thoughts#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.2"
+  }
+}
