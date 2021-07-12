@@ -30,7 +30,7 @@ const thoughtController = {
         Thought.findOneAndUpdate({ _id: params.id }, body, {new: true, runValidators: true })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
-                res.status(404).json({ message: 'No thought found by that id~' });
+                res.status(404).json({ message: 'No thought found by that id!' });
                 return;
             }
             res.json(dbThoughtData);
@@ -45,4 +45,4 @@ const thoughtController = {
     }
 }
 
-module.exports = userController;
+module.exports = thoughtController;
