@@ -5,7 +5,7 @@ const thoughtController = {
         Thought.find({})
         .select('-__v')
         .sort({ _id: -1 })
-        .then(dbThoughtData => res.json(dbThoughtData))
+        .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
             res.sendStatus(400);
@@ -13,8 +13,8 @@ const thoughtController = {
     },
 
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id })
-        .then(dbThoughtData => res.json(dbThoughtData))
+        Thought.findOne({ _id: params.thoughtId })
+        .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
             res.sendStatus(400);
@@ -41,7 +41,7 @@ const thoughtController = {
     },
 
     updateThought({ params, body }, res) {
-        Thought.findOneAndUpdate({ _id: params.id }, body, {new: true, runValidators: true })
+        Thought.findOneAndUpdate({ _id: params.thoughtId }, body, {new: true, runValidators: true })
         .then(dbUserData => {
             if (!dbUserData) {
                 res.status(404).json({ message: 'No thought found by that id!' });
@@ -53,7 +53,7 @@ const thoughtController = {
     },
 
     deleteThought({ params }, res) {
-        Thought.findOneAndDelete({ _id: params.id })
+        Thought.findOneAndDelete({ _id: params.thoughtId })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => res.json(err));
     },
@@ -61,7 +61,7 @@ const thoughtController = {
     createReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $push: {thoughts: body } },
+            { $addToSet: {reactions: body } },
             { new: true, runValidators: true }
         )
         .then(dbUserData => {
@@ -75,17 +75,15 @@ const thoughtController = {
     },
 
     deleteReaction({ params }, res) {
+        console.log(params)
         Thought.findOneAndUpdate(
-            { _id: params.userId },
-            { $pull: { reactions: { reactionId: params.reactionsId } } },
+            { _id: params.thoughtId },
+            { $pull: { reactions: { _id: params.reactionId } } },
             { new: true }
         )
         .then(dbUserData => res.json(dbUserData))
         .catch(err => res.json(err));
     }
-
-
-
 }
 
 module.exports = thoughtController;
