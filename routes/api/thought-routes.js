@@ -22,19 +22,20 @@ router
 router
     .route('/:thoughtId')
     .get(getThoughtById)
+    .delete(deleteThought);
     
 
 router
     .route('/:userId/:thoughtId')
     .put(updateThought)
-    .delete(deleteThought);
+    
 
 router
     .route('/:thoughtId/reactions')
     .post(createReaction)
 
 router
-    .route('/:thoughtId/:reactionId')
+    .route('/:thoughtId/reactions/:reactionId')
     .delete(deleteReaction);
 
 

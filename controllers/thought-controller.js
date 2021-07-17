@@ -78,12 +78,15 @@ const thoughtController = {
         console.log(params)
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $pull: { reactions: { _id: params.reactionId } } },
+            { $pull: { reactions: { reactionId: params.reactionId } } },
             { new: true }
         )
         .then(dbUserData => res.json(dbUserData))
-        .catch(err => res.json(err));
+        .catch(err => res.status(400).json(err));
     }
+
+
+
 }
 
 module.exports = thoughtController;
